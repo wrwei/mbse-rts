@@ -1,0 +1,62 @@
+@namespace(uri="http://cam.mcs.model/mcs", prefix="artifact_")
+package artifact;
+
+import "http://cam.mcs.model/base";
+
+abstract class MCSElement extends base.ArtifactElement {
+}
+
+class Core extends MCSElement {
+	attr int time;
+	ref Task current_task;
+	ref Task[*] queue;
+}
+
+class MCSystem extends MCSElement {
+	attr Criticality criticality;
+	attr int ceiling_priority;
+	attr Status status;
+	val Semaphore[*] resources;
+	val Task[*] tasks;
+	val Core core;
+}
+
+enum Status {
+	LOW;
+	MCP;
+	HIGH;
+}
+
+enum Criticality {
+	low = 1;
+	high = 2;
+}
+
+class Task extends MCSElement {
+	attr int priority;
+	attr int period;
+	attr int deadline;
+	attr int wcet_low;
+	attr int wcet_high;
+	attr Criticality criticality;
+	attr int dynamic_priority;
+	attr int offset;
+	attr int release_time;
+	attr int current_cs; //current critical section, -1 = meiyou, 0,1,2,3.. = nasha
+	val CriticalSection[*] critical_sections;
+}
+
+class CriticalSection extends MCSElement {
+	attr int start; //relative start time
+	attr int execution; //execution time
+	attr int elapsed; //time spent in critical section
+	ref Semaphore semaphore;
+} 
+
+class Semaphore extends MCSElement {
+	attr boolean locked;
+	attr int initial_priority;
+	attr int ceiling_priority;
+	ref Task acquisition;
+}
+

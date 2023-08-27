@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="" modelDirectory="/cam.mcs.model/src" modelPluginID="cam.mcs.model"
+    modelName="Artifact" importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0"
+    copyrightFields="false">
+  <foreignModel>mcs.ecore</foreignModel>
+  <genPackages prefix="Artifact" disposableProviderFactory="true" ecorePackage="mcs.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="mcs.ecore#//Status">
+      <genEnumLiterals ecoreEnumLiteral="mcs.ecore#//Status/LOW"/>
+      <genEnumLiterals ecoreEnumLiteral="mcs.ecore#//Status/MCP"/>
+      <genEnumLiterals ecoreEnumLiteral="mcs.ecore#//Status/HIGH"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="mcs.ecore#//Criticality">
+      <genEnumLiterals ecoreEnumLiteral="mcs.ecore#//Criticality/low"/>
+      <genEnumLiterals ecoreEnumLiteral="mcs.ecore#//Criticality/high"/>
+    </genEnums>
+    <genClasses image="false" ecoreClass="mcs.ecore#//MCSElement"/>
+    <genClasses ecoreClass="mcs.ecore#//Core">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mcs.ecore#//Core/time"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mcs.ecore#//Core/current_task"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mcs.ecore#//Core/queue"/>
+    </genClasses>
+    <genClasses ecoreClass="mcs.ecore#//MCSystem">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mcs.ecore#//MCSystem/criticality"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mcs.ecore#//MCSystem/ceiling_priority"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mcs.ecore#//MCSystem/status"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mcs.ecore#//MCSystem/resources"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mcs.ecore#//MCSystem/tasks"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mcs.ecore#//MCSystem/core"/>
+    </genClasses>
+    <genClasses ecoreClass="mcs.ecore#//Task">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mcs.ecore#//Task/priority"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mcs.ecore#//Task/period"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mcs.ecore#//Task/deadline"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mcs.ecore#//Task/wcet_low"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mcs.ecore#//Task/wcet_high"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mcs.ecore#//Task/criticality"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mcs.ecore#//Task/dynamic_priority"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mcs.ecore#//Task/offset"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mcs.ecore#//Task/release_time"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mcs.ecore#//Task/enter_critical_section_times"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mcs.ecore#//Task/critical_section_execution_times"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mcs.ecore#//Task/semaphore"/>
+    </genClasses>
+    <genClasses ecoreClass="mcs.ecore#//Semaphore">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mcs.ecore#//Semaphore/locked"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mcs.ecore#//Semaphore/initial_priority"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mcs.ecore#//Semaphore/ceiling_priority"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mcs.ecore#//Semaphore/acquisition"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

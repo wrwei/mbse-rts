@@ -1,0 +1,55 @@
+@namespace(uri="http://cam.mcs.model/base", prefix="base_")
+package base;
+
+abstract class Element {
+}
+
+abstract class NamedElement extends Element {
+	attr String gid;
+	attr boolean isCitation = false;
+	attr boolean isAbstract = false;
+	ref NamedElement citedElement;
+}
+
+abstract class ModelElement extends NamedElement {
+	attr String name;
+	val Description description;
+	val ImplementationConstraint[*] implementationConstraint;
+	val Note[*] note;
+	val TaggedValue[*] taggedValue;
+	val ExternalReference externalReference;
+}
+
+class LangString extends Element {
+	attr String lang;
+	attr String content;
+}
+
+abstract class UtilityElement extends NamedElement {
+	attr String content;
+}
+
+class ExternalReference extends UtilityElement {
+	val LangString location;
+	val LangString type;
+	val LangString metadata;
+	val ImplementationConstraint[*] implementationConstraint;
+}
+
+class Description extends UtilityElement {
+}
+
+class ImplementationConstraint extends UtilityElement {
+}
+
+class Note extends UtilityElement {
+}
+
+class TaggedValue extends UtilityElement {
+	attr String key;
+	attr String value;
+}
+
+abstract class ArtifactElement extends ModelElement {
+}
+

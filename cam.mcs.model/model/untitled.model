@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ASCII"?>
+<artifact_:MCSystem xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:artifact_="http://cam.mcs.model/mcs" ceiling_priority="1">
+  <resources name="R1" initial_priority="1" ceiling_priority="3"/>
+  <resources name="R2" initial_priority="2" ceiling_priority="3"/>
+  <resources name="R3" initial_priority="2" ceiling_priority="3"/>
+  <tasks name="T1" priority="1" period="2" deadline="10" wcet_low="4" wcet_high="5" dynamic_priority="7" offset="8" release_time="22" semaphore="//@resources.0"/>
+  <tasks name="T2" priority="1" period="2" deadline="20" wcet_low="4" wcet_high="5" dynamic_priority="7" offset="8" release_time="15" semaphore="//@resources.1 //@resources.2"/>
+  <tasks name="T3" priority="1" period="2" deadline="30" wcet_low="4" wcet_high="5" dynamic_priority="7" offset="8" release_time="9972" semaphore="//@resources.2 //@resources.1"/>
+  <core time="10001" current_task="//@tasks.2" queue="//@tasks.0 //@tasks.2"/>
+</artifact_:MCSystem>
