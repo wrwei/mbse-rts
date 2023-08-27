@@ -158,10 +158,10 @@ operation release_lock(task, semaphore) {
 operation createCriticalSection(name, start, execution, sem) {
 	var cs = new CriticalSection;
 	cs.name = name;
-	cs.start = start;
-	cs.execution = execution;
-	cs.elapsed = 0;
-	cs.semaphore = sem;
+	cs.start = start; //relative start time
+	cs.execution = execution; //execution time in critical section 
+	cs.elapsed = 0; //time elapsed in the critical section
+	cs.semaphore = sem; // semaphore acquired by this critical section
 	return cs;
 }
 
@@ -175,7 +175,7 @@ operation createTask(name, pri, T, d, wl, wh, l, dp, of) {
 	task.wcet_high = wh; //wcet in high mode
 	task.dynamic_priority = dp; //dynamic priority
 	task.offset = of; //initial  offset
-	task.current_cs = -1;
+	task.current_cs = -1; //current cs, -1 means not in critical sections, 0, 1, 2 means index of critical section
 	system.tasks.add(task); //add this task to the system
 	return task;
 }
@@ -191,7 +191,7 @@ operation set_release_time(task, time) {
 operation createSemaphore(name, locked, initial, ceiling) {
 	var sem = new Semaphore;
 	sem.name = name;
-	sem.locked = locked;
+	sem.locked = locked; 
 	sem.initial_priority = initial;
 	sem.ceiling_priority = ceiling;
 	system.resources.add(sem);
